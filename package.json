@@ -4,7 +4,8 @@
   "description": "컴공봇 프로젝트 관련 어드민 페이지",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/Team-Helper/ComgongBOT_AdminPage/issues"
   },
-  "homepage": "https://github.com/Team-Helper/ComgongBOT_AdminPage#readme"
+  "homepage": "https://github.com/Team-Helper/ComgongBOT_AdminPage#readme",
+  "dependencies": {
+    "@adminjs/express": "^4.0.1",
+    "adminjs": "^5.5.1",
+    "express": "^4.17.2",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.2",
+    "tslib": "^2.3.1"
+  }
 }

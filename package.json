@@ -17,15 +17,6 @@
     "url": "https://github.com/Team-Helper/ComgongBOT_AdminPage/issues"
   },
   "homepage": "https://github.com/Team-Helper/ComgongBOT_AdminPage#readme",
-  "dependencies": {
-    "@adminjs/express": "^4.0.1",
-    "adminjs": "^5.5.1",
-    "express": "^4.17.2",
-    "express-formidable": "^1.2.0",
-    "express-session": "^1.17.2",
-    "tslib": "^2.3.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

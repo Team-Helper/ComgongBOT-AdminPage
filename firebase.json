@@ -1,34 +1,68 @@
 {
-  "hosting": {
-    "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
-  "emulators": {
     "hosting": {
-      "port": 5000
+        "public": "build",
+        "ignore": [
+            "firebase.json", "**/.*", "**/node_modules/**"
+        ],
+        "cleanUrls": true,
+        "headers": [
+            {
+                "source": "**",
+                "headers": [
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    }
+                ]
+            }, {
+                "source": "**/*.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=0, no-cache"
+                    }
+                ]
+            }, {
+                "source": "**/*.@(css|js)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=3500"
+                    }
+                ]
+            }, {
+                "source": "**/*.@(jpg|jpeg|gif|png)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=3300"
+                    }
+                ]
+            }
+        ]
     },
-    "ui": {
-      "enabled": true
+    "emulators": {
+        "hosting": {
+            "port": 5000
+        },
+        "ui": {
+            "enabled": true
+        },
+        "firestore": {
+            "port": 8080
+        },
+        "storage": {
+            "port": 9199
+        },
+        "auth": {
+            "port": 9099
+        }
     },
     "firestore": {
-      "port": 8080
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
     },
     "storage": {
-      "port": 9199
-    },
-    "auth": {
-      "port": 9099
+        "rules": "storage.rules"
     }
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
-  }
 }

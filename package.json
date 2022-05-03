@@ -4,8 +4,7 @@
   "description": "컴공봇 프로젝트 관련 어드민 페이지",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,6 +16,7 @@
     "url": "https://github.com/Team-Helper/ComgongBOT_AdminPage/issues"
   },
   "homepage": "https://github.com/Team-Helper/ComgongBOT_AdminPage#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "firebase": "^9.7.0"
+  }
 }

@@ -6,8 +6,8 @@ module.exports = {
     entry: ['./build/js/index.js'],
     // The location of the build folder described above
     output: {
-        path: path.resolve(__dirname + '/build', 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname + '/build', 'lib'),
+        filename: 'bundle.js',
     },
     plugins: [new Dotenv()],
     // Optional and for development only. This provides the ability to map the built

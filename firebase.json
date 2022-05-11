@@ -20,9 +20,6 @@
                     {
                         "key": "Cache-Control",
                         "value": "max-age=0, no-cache"
-                    }, {
-                        "key": "test",
-                        "value": "contents"
                     }
                 ]
             }, {

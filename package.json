@@ -4,8 +4,8 @@
   "description": "컴공봇 프로젝트 관련 어드민 페이지",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=development --watch"
+    "build": "webpack --mode=development --watch",
+    "start": "npm run build | firebase emulators:start"
   },
   "repository": {
     "type": "git",

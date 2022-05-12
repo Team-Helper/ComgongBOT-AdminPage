@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
 
 const firebaseConfig = {

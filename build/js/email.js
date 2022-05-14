@@ -28,7 +28,7 @@ import {getAuth, sendSignInLinkToEmail} from "firebase/auth";
             const auth = getAuth();
             console.log(auth);
             sendSignInLinkToEmail(auth, email, {
-                url: 'comgong-bot.firebaseapp.com',
+                url: 'https://comgong-bot.firebaseapp.com',
                 handleCodeInApp: true
             })
                 .then(() => {

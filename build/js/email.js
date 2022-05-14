@@ -26,7 +26,7 @@ import {getAuth, sendSignInLinkToEmail} from "firebase/auth";
             // alert('컴공봇은 08학번부터 지원해요.');
         } else {
             const auth = getAuth();
-            console.log(auth);
+            // console.log(auth);
             sendSignInLinkToEmail(auth, email, {
                 url: 'https://comgong-bot.firebaseapp.com',
                 handleCodeInApp: true

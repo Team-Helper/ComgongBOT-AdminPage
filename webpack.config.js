@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     // The entry point file described above
-    entry: ['./build/js/index.js'],
+    entry: ['./build/js/index.js','./build/js/email.js'],
     // The location of the build folder described above
     output: {
         path: path.resolve(__dirname + '/build', 'lib'),

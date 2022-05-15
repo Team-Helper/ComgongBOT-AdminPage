@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
+import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -11,5 +12,36 @@ const firebaseConfig = {
     appId: process.env.appId,
     measurementId: process.env.measurementId
 };
-
 initializeApp(firebaseConfig);
+// console.log(firebaseConfig);
+
+const auth = getAuth();
+export function sendLink(email) {
+    // console.log(email); console.log(auth);
+    sendSignInLinkToEmail(auth, email, {
+        url: 'http://localhost:5000/',
+        handleCodeInApp: true
+    })
+        .then(() => {
+            console.log('success send email');
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error(errorCode, errorMessage);
+        });
+}
+export function createAccount() {
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+        // console.log(window.location.href);
+        signInWithEmailLink(auth, email, window.location.href)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+            });
+    }
+}

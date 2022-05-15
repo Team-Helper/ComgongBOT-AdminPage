@@ -4,11 +4,12 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     // The entry point file described above
-    entry: ['./build/js/index.js','./build/js/email.js'],
+    entry: ['./build/js/index.js'],
     // The location of the build folder described above
     output: {
         path: path.resolve(__dirname + '/build', 'lib'),
         filename: 'bundle.js',
+        library: 'firebasePack'
     },
     plugins: [new Dotenv()],
     // Optional and for development only. This provides the ability to map the built

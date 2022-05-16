@@ -19,7 +19,7 @@ const auth = getAuth();
 export function sendLink(email) {
     // console.log(email); console.log(auth);
     sendSignInLinkToEmail(auth, email, {
-        url: 'http://localhost:5000/',
+        url: 'https://comgong-bot.web.app/',
         handleCodeInApp: true
     })
         .then(() => {

@@ -34,9 +34,14 @@ export function sendLink(email) {
 export function createAccount() {
     if (isSignInWithEmailLink(auth, window.location.href)) {
         // console.log(window.location.href);
-        signInWithEmailLink(auth, email, window.location.href)
+        const user = JSON.parse(window.localStorage.getItem('user'));
+        // console.log(user);
+        signInWithEmailLink(auth, user.email, window.location.href)
             .then((result) => {
                 console.log(result);
+                window
+                    .localStorage
+                    .removeItem('user');
             })
             .catch((error) => {
                 const errorCode = error.code;

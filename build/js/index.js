@@ -34,35 +34,39 @@ export function sendLink(email) {
 export function createAccount() {
     if (isSignInWithEmailLink(auth, window.location.href)) {
         // console.log(window.location.href);
-        const user = JSON.parse(window.localStorage.getItem('user'));
-        console.log(user);
-        signInWithEmailLink(auth, user.email, window.location.href)
-            .then((result) => {
-                // console.log(result);
-                const settings = {
-                    "url": "https://asia-northeast1-comgong-bot.cloudfunctions.net/middleWare/setting/emai" +
-                            "l_auth",
-                    "method": "POST",
-                    "timeout": 0,
-                    "headers": {
-                        "Content-Type": "application/json"
-                    },
-                    "data": window.localStorage.getItem('user')
-                };
-                console.log(settings);
-
-                $
-                    .ajax(settings)
-                    .done(function (response) {
-                        console.log(response);
-                        window
+        const user = JSON.parse(window.localStorage.getItem('userAbout'));
+        // console.log(user);
+        signInWithEmailLink(auth, user.Data.email, window.location.href)
+            .then(
+                (result) => {
+                    // console.log(result);
+                    const settings = {
+                        "url": "https://asia-northeast1-comgong-bot.cloudfunctions.net/middleWare/setting/emai" +
+                                "l_auth",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "data": window
                             .localStorage
-                            .removeItem('user');
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    });
-            })
+                            .getItem('userAbout')
+                    };
+                    console.log(settings);
+
+                    $
+                        .ajax(settings)
+                        .done(function (response) {
+                            console.log(response);
+                            window
+                                .localStorage
+                                .removeItem('userAbout');
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        });
+                }
+            )
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

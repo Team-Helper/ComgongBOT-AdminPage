@@ -27,13 +27,15 @@
         } else {
             firebasePack.sendLink(email);
             const user = {
-                'email': email,
-                'grade': grade,
-                'studentID': studentID
+                'Data': {
+                    'email': email,
+                    'grade': grade,
+                    'studentID': studentID
+                }
             };
             window
                 .localStorage
-                .setItem('user', JSON.stringify(user));
+                .setItem('userAbout', JSON.stringify(user));
             $('.alert-success').show('fade');
             $('#successText').text('인증 관련 메일을 입력하신 주소로 전송했어요!');
             setTimeout(function () {

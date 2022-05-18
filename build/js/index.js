@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
 import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink} from "firebase/auth";
+import CryptoJS from 'crypto-js';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -58,6 +59,11 @@ export function createAccount() {
                         .ajax(settings)
                         .done(function (response) {
                             console.log(response);
+                            const bytes = CryptoJS
+                                .AES
+                                .decrypt(user.Data.userKey, process.env.aesKey);
+                            const decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+                            console.log(decrypted);
                             window
                                 .localStorage
                                 .removeItem('userAbout');

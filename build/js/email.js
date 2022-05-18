@@ -25,12 +25,16 @@
                 $('.alert-danger').hide('fade');
             }, 1500);
         } else {
+            const urlParams = new URL(window.location.href).searchParams;
+            const userKey = urlParams.get('variable');
+            // console.log(userKey);
             firebasePack.sendLink(email);
             const user = {
                 'Data': {
                     'email': email,
                     'grade': grade,
-                    'studentID': studentID
+                    'studentID': studentID,
+                    'userKey': userKey
                 }
             };
             window

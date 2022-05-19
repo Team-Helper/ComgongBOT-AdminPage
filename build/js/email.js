@@ -2,6 +2,13 @@
 /* eslint-disable id-length */
 (function ($) {
     $('.alert').hide();
+    const urlParams = new URL(window.location.href).searchParams;
+    const userKey = urlParams.get('variable');
+    // console.log(userKey);
+    if (!userKey) {
+        alert('비정상 접근이예요!');
+        history.back();
+    }
 
     $('form').submit(function (e) { // 제출 버튼이 눌렸을 때
         e.preventDefault();
@@ -28,8 +35,6 @@
                 $('.alert-danger').hide('fade');
             }, 1500);
         } else {
-            const urlParams = new URL(window.location.href).searchParams;
-            const userKey = urlParams.get('variable');
             // console.log(userKey);
             firebasePack.sendLink(email); // 인증 링크 관련 이메일 전송 함수 호출
             const user = {

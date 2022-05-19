@@ -42,8 +42,7 @@ export function createAccount() {
                 // console.log(result);
                 /* 등록 후 프로필 DB 생성 관련 컴공봇 기능 호출 */
                 const settings = {
-                    "url": "https://asia-northeast1-comgong-bot.cloudfunctions.net/middleWare/setting/emai" +
-                            "l_auth",
+                    "url": process.env.emailAuth,
                     "method": "POST",
                     "timeout": 0,
                     "headers": {

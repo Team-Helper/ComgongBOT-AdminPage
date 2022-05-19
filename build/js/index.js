@@ -56,7 +56,7 @@ export function createAccount() {
                 $
                     .ajax(settings)
                     .done(function (response) { // 프로필 DB 생성 후 로컬 스토리지 값 삭제
-                        // console.log(response);
+                        console.log(response);
                         console.log('success auth email');
                         window
                             .localStorage

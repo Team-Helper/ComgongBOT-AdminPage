@@ -4,7 +4,7 @@
     $('.alert').hide();
     const urlParams = new URL(window.location.href).searchParams;
     const userKey = urlParams.get('variable');
-    // console.log(userKey);
+    console.log(userKey, typeof userKey, userKey.length);
     if (!userKey) {
         alert('비정상 접근이예요!');
         history.back();

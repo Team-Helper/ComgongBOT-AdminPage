@@ -63,12 +63,18 @@
                     class="row h-100 align-items-center justify-content-center"
                     style="min-height: 100vh;">
                     <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                        <div
-                            class="alert alert-danger alert-dismissible fade show"
-                            role="alert"
-                            style="visibility: hidden;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <i class="fa fa-exclamation-circle me-2"></i>
-                            <span id="textBlank"></span>
+                            <span id="dangerText"></span>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fa fa-exclamation-circle me-2"></i>
+                            <span id="successText"></span>
                             <button
                                 type="button"
                                 class="btn-close"
@@ -106,7 +112,7 @@
                             <h6 class="mb-2">학번 입력</h6>
                             <div class="form-floating mb-3">
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
                                     id="floatingNumber"
                                     placeholder="Number">
@@ -137,6 +143,7 @@
         <!-- Template Javascript -->
         <script src="lib/bundle.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/email.js"></script>
     </body>
 
 </html>

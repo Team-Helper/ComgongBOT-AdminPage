@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Team-Helper/ComgongBOT_AdminPage#readme",
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "firebase": "^9.7.0"
   },
   "devDependencies": {

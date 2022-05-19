@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
-import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink} from "firebase/auth";
+import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink} from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -16,11 +16,28 @@ initializeApp(firebaseConfig); // firebase web init
 // console.log(firebaseConfig);
 
 const auth = getAuth();
-export function sendLink(email) {
-    // console.log(email); console.log(auth);
+// console.log(auth);
+export function sendLink(email, grade, studentID, userKey) {
+    // console.log(email, grade, studentID, userKey);
+    const url = 'http://localhost:5000/?email=?grade=?studentID=?userKey=';
+    const newURL = new URL(url);
+    newURL
+        .searchParams
+        .set('email', email);
+    newURL
+        .searchParams
+        .set('grade', grade);
+    newURL
+        .searchParams
+        .set('studentID', studentID);
+    newURL
+        .searchParams
+        .set('userKey', userKey);
+    const webLink = newURL.href; // 연결 페이지 주소에 파라미터로 저장
+    // console.log(webLink);
     /* 지정한 도메인 주소로의 인증 링크 이메일 전송 */
     sendSignInLinkToEmail(auth, email, {
-        url: 'https://comgong-bot.web.app/',
+        url: webLink,
         handleCodeInApp: true
     })
         .then(() => {
@@ -35,9 +52,13 @@ export function sendLink(email) {
 export function createAccount() {
     if (isSignInWithEmailLink(auth, window.location.href)) { // 링크를 누른 경우
         // console.log(window.location.href);
-        const user = JSON.parse(window.localStorage.getItem('userAbout')); // 로컬 스토리지 값 변수 처리
-        // console.log(user);
-        signInWithEmailLink(auth, user.Data.email, window.location.href) // auth에 사용자 이메일 등록
+        const getURL = (new URL(window.location.href)).searchParams;
+        const email = getURL.get('email');
+        const grade = getURL.get('grade');
+        const studentID = getURL.get('studentID');
+        const userKey = getURL.get('userKey');
+        // console.log(email, grade, studentID, userKey);
+        signInWithEmailLink(auth, email, window.location.href) // auth에 사용자 이메일 등록
             .then((result) => {
                 // console.log(result);
                 /* 등록 후 프로필 DB 생성 관련 컴공봇 기능 호출 */
@@ -48,9 +69,14 @@ export function createAccount() {
                     "headers": {
                         "Content-Type": "application/json"
                     },
-                    "data": window
-                        .localStorage
-                        .getItem('userAbout')
+                    "data": JSON.stringify({
+                        "Data": {
+                            'email': email,
+                            'grade': grade,
+                            'studentID': studentID,
+                            'userKey': userKey
+                        }
+                    })
                 };
                 // console.log(settings);
                 $
@@ -58,9 +84,6 @@ export function createAccount() {
                     .done(function (response) { // 프로필 DB 생성 후 로컬 스토리지 값 삭제
                         console.log(response);
                         console.log('success auth email');
-                        window
-                            .localStorage
-                            .removeItem('userAbout');
                     })
                     .catch(err => {
                         console.error(err);

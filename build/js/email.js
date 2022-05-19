@@ -4,7 +4,7 @@
     $('.alert').hide();
     const urlParams = new URL(window.location.href).searchParams;
     const userKey = urlParams.get('variable');
-    // console.log(userKey, typeof userKey, userKey.length);
+    // console.log(userKey);
     if (!userKey || (typeof userKey != 'string' || userKey.length != 44)) {
         alert('비정상 접근이예요!');
         history.back();
@@ -36,18 +36,7 @@
             }, 1500);
         } else {
             // console.log(userKey);
-            firebasePack.sendLink(email); // 인증 링크 관련 이메일 전송 함수 호출
-            const user = {
-                'Data': {
-                    'email': email,
-                    'grade': grade,
-                    'studentID': studentID,
-                    'userKey': userKey
-                }
-            };
-            window
-                .localStorage
-                .setItem('userAbout', JSON.stringify(user)); // 로컬 스토리지에 사용자 입력 정보 저장
+            firebasePack.sendLink(email, grade, studentID, userKey); // 인증 링크 관련 이메일 전송 함수 호출
 
             $('.alert-success').show('fade');
             $('#successText').text('인증 관련 메일을 입력하신 주소로 전송했어요!');

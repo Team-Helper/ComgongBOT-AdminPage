@@ -16,7 +16,7 @@
         .substring(2);
     // console.log(thisYear);
 
-    $('form').submit(function (e) { // 제출 버튼이 눌렸을 때
+    $('form').submit(async function (e) { // 제출 버튼이 눌렸을 때
         e.preventDefault();
         /* 입력된 이메일, 학년, 학번 값 각각 변수 처리 */
         const email = $('#floatingInput').val();
@@ -41,9 +41,9 @@
                 $('.alert-danger').hide('fade');
             }, 2000);
         } else {
-            const check = firebasePack.checkUser(); // 가입된 유저인지 아닌지 판별하는 함수 호출
+            const check = await firebasePack.checkUser(email); // 가입된 사용자인지 아닌지 판별하는 함수 호출
             // console.log(check);
-            if (check) { // 가입되지 않은 유저라면
+            if (check) { // 가입되지 않은 사용자라면
                 firebasePack.sendLink(email, grade, studentID, userKey); // 인증 링크 관련 이메일 전송 함수 호출
                 /* 관련 성공창 렌더링 */
                 $('.alert-success').show('fade');
@@ -51,9 +51,9 @@
                 setTimeout(function () {
                     $('.alert-success').hide('fade');
                 }, 3000);
-            } else { // 가입되어 있는 유저라면
+            } else { // 가입되어 있는 사용자라면
                 $('.alert-danger').show('fade');
-                $('#dangerText').text('이미 가입된 이메일 입니다.');
+                $('#dangerText').text('이미 가입된 사용자 입니다.');
                 setTimeout(function () {
                     $('.alert-danger').hide('fade');
                 }, 2000);

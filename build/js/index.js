@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
-import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, getAdditionalUserInfo} from 'firebase/auth';
+import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, fetchSignInMethodsForEmail} from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -17,10 +17,10 @@ initializeApp(firebaseConfig); // firebase web init
 
 const auth = getAuth();
 // console.log(auth);
-export function checkUser() { // 가입 유무를 판별하는 함수
-    const user = auth.currentUser;
+export async function checkUser(email) { // 가입 유무를 판별하는 함수
+    const user = await fetchSignInMethodsForEmail(auth, email); // 0 이면 가입되지 않은, 1이면 가입된 사용자임을 알림
     // console.log(user);
-    if (user === null) {
+    if (user.length === 0) {
         return true;
     } else {
         return false;
@@ -28,6 +28,7 @@ export function checkUser() { // 가입 유무를 판별하는 함수
 }
 export function sendLink(email, grade, studentID, userKey) { // 인증 링크 이메일 전송 함수
     // console.log(email, grade, studentID, userKey);
+    /* 연결 도메인 주소에 파라미터 값들을 저장 및 새로운 링크로 반환 */
     const url = 'https://comgong-bot.web.app/?email=?grade=?studentID=?userKey=';
     const newURL = new URL(url);
     newURL
@@ -42,7 +43,7 @@ export function sendLink(email, grade, studentID, userKey) { // 인증 링크 �
     newURL
         .searchParams
         .set('userKey', userKey);
-    const webLink = newURL.href; // 연결 페이지 주소에 파라미터 값들 저장
+    const webLink = newURL.href;
     // console.log(webLink);
     /* 지정한 도메인 주소로의 인증 링크 이메일 전송 */
     sendSignInLinkToEmail(auth, email, {
@@ -71,7 +72,7 @@ export function createAccount() { // 계정 생성 함수
         signInWithEmailLink(auth, email, window.location.href) // auth에 사용자 이메일 등록
             .then((result) => {
                 // console.log(result);
-                /* 등록 후 프로필 DB 생성 관련 컴공봇 기능 호출 */
+                /* 등록 후 프로필 DB 생성 관련 ComgongBOT 기능 호출 */
                 const settings = {
                     "url": process.env.emailAuth,
                     "method": "POST",
@@ -91,7 +92,7 @@ export function createAccount() { // 계정 생성 함수
                 // console.log(settings);
                 $
                     .ajax(settings)
-                    .done(function (response) { // 프로필 DB 생성 후 로컬 스토리지 값 삭제
+                    .done(function (response) { // 프로필 생성 완료 후
                         console.log(response);
                         console.log('success auth email and profile DB');
                     })

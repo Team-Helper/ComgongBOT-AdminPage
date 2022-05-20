@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
-import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink} from 'firebase/auth';
+import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, getAdditionalUserInfo} from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -17,9 +17,18 @@ initializeApp(firebaseConfig); // firebase web init
 
 const auth = getAuth();
 // console.log(auth);
-export function sendLink(email, grade, studentID, userKey) {
+export function checkUser() { // 가입 유무를 판별하는 함수
+    const user = auth.currentUser;
+    // console.log(user);
+    if (user === null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+export function sendLink(email, grade, studentID, userKey) { // 인증 링크 이메일 전송 함수
     // console.log(email, grade, studentID, userKey);
-    const url = 'https://comgong-bot.web.app/?email=?grade=?studentID=?userKey=';
+    const url = 'http://localhost:5000/?email=?grade=?studentID=?userKey=';
     const newURL = new URL(url);
     newURL
         .searchParams
@@ -49,7 +58,7 @@ export function sendLink(email, grade, studentID, userKey) {
             console.error(errorCode, errorMessage);
         });
 }
-export function createAccount() {
+export function createAccount() { // 계정 생성 함수
     if (isSignInWithEmailLink(auth, window.location.href)) { // 링크를 누른 경우
         // console.log(window.location.href);
         /* 파라미터 값들 각각 변수처리 */

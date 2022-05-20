@@ -28,7 +28,7 @@ export function checkUser() { // 가입 유무를 판별하는 함수
 }
 export function sendLink(email, grade, studentID, userKey) { // 인증 링크 이메일 전송 함수
     // console.log(email, grade, studentID, userKey);
-    const url = 'http://localhost:5000/?email=?grade=?studentID=?userKey=';
+    const url = 'https://comgong-bot.web.app/?email=?grade=?studentID=?userKey=';
     const newURL = new URL(url);
     newURL
         .searchParams

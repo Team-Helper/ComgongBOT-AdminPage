@@ -1,6 +1,13 @@
 /* eslint-disable no-undef */
 import {initializeApp} from 'firebase/app';
-import {getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, fetchSignInMethodsForEmail} from 'firebase/auth';
+import {
+    getAuth,
+    sendSignInLinkToEmail,
+    isSignInWithEmailLink,
+    signInWithEmailLink,
+    fetchSignInMethodsForEmail,
+    deleteUser
+} from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: process.env.apiKey,
@@ -29,7 +36,7 @@ export async function checkUser(email) { // 가입 유무를 판별하는 함수
 export function sendLink(email, grade, studentID, userKey) { // 인증 링크 이메일 전송 함수
     // console.log(email, grade, studentID, userKey);
     /* 연결 도메인 주소에 파라미터 값들을 저장 및 새로운 링크로 반환 */
-    const url = 'https://comgong-bot.web.app/?email=?grade=?studentID=?userKey=';
+    const url = 'https://comgong-bot.web.app/linkpage?email=?grade=?studentID=?userKey=';
     const newURL = new URL(url);
     newURL
         .searchParams
@@ -46,17 +53,19 @@ export function sendLink(email, grade, studentID, userKey) { // 인증 링크 �
     const webLink = newURL.href;
     // console.log(webLink);
     /* 지정한 도메인 주소로의 인증 링크 이메일 전송 */
-    sendSignInLinkToEmail(auth, email, {
+    return sendSignInLinkToEmail(auth, email, {
         url: webLink,
         handleCodeInApp: true
     })
         .then(() => {
-            console.log('success send email');
+            // console.log('success send email');
+            return true;
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.error(errorCode, errorMessage);
+            // console.error(errorCode, errorMessage);
+            return false;
         });
 }
 export function createAccount() { // 계정 생성 함수
@@ -69,9 +78,10 @@ export function createAccount() { // 계정 생성 함수
         const studentID = getURL.get('studentID');
         const userKey = getURL.get('userKey');
         // console.log(email, grade, studentID, userKey);
-        signInWithEmailLink(auth, email, window.location.href) // auth에 사용자 이메일 등록
-            .then((result) => {
+        return signInWithEmailLink(auth, email, window.location.href) // auth에 사용자 이메일 등록
+            .then(async (result) => {
                 // console.log(result);
+                // console.log('success email auth');
                 /* 등록 후 프로필 DB 생성 관련 ComgongBOT 기능 호출 */
                 const settings = {
                     "url": process.env.emailAuth,
@@ -90,20 +100,25 @@ export function createAccount() { // 계정 생성 함수
                     })
                 };
                 // console.log(settings);
-                $
+                const createProfile = await $
                     .ajax(settings)
                     .done(function (response) { // 프로필 생성 완료 후
-                        console.log(response);
-                        console.log('success auth email and profile DB');
+                        // console.log(response);
                     })
                     .catch(err => {
-                        console.error(err);
+                        // console.error(err);
+                        const user = auth.currentUser;
+                        deleteUser(user);
+                        return false;
                     });
+                // console.log(createProfile);
+                return createProfile;
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
+                // console.error(errorCode, errorMessage);
+                return false;
             });
     }
 }

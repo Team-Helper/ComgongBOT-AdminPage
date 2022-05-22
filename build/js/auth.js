@@ -1,6 +1,13 @@
 /* eslint-disable no-undef */
 /* eslint-disable id-length */
 (async function ($) {
+    const urlParams = new URL(window.location.href).searchParams;
+    const apiKey = urlParams.get('apiKey');
+    // console.log(apiKey, typeof apiKey, apiKey.length);
+    if (!apiKey || typeof apiKey != 'string') {
+        alert('비정상 접근이예요!');
+        history.back();
+    }
     const authResult = await firebasePack.createAccount(); // auth 생성 함수 호출
     // console.log(authResult);
     if (authResult) {

@@ -84,7 +84,7 @@ export function createAccount() { // 계정 생성 함수
                 // console.log('success email auth');
                 /* 등록 후 프로필 DB 생성 관련 ComgongBOT 기능 호출 */
                 const settings = {
-                    "url": process.env.emailAuth,
+                    "url": process.env.createProfile,
                     "method": "POST",
                     "timeout": 0,
                     "headers": {
@@ -100,7 +100,7 @@ export function createAccount() { // 계정 생성 함수
                     })
                 };
                 // console.log(settings);
-                const createProfile = await $
+                const resultProfile = await $
                     .ajax(settings)
                     .done(function (response) { // 프로필 생성 완료 후
                         // console.log(response);
@@ -111,8 +111,8 @@ export function createAccount() { // 계정 생성 함수
                         deleteUser(user);
                         return false;
                     });
-                // console.log(createProfile);
-                return createProfile;
+                // console.log(resultProfile);
+                return resultProfile;
             })
             .catch((error) => {
                 const errorCode = error.code;

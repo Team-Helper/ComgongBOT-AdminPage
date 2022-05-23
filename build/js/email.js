@@ -44,6 +44,7 @@
             const check = await firebasePack.checkUser(email); // 가입된 사용자인지 아닌지 판별하는 함수 호출
             // console.log(check);
             if (check) { // 가입되지 않은 사용자라면
+                $('#spinner').addClass('show');
                 const sendResult = await firebasePack.sendLink(
                     email,
                     grade,
@@ -53,12 +54,11 @@
                 // console.log(sendResult);
                 /* 관련 성공창 렌더링 */
                 if (sendResult) {
+                    $('#spinner').removeClass('show');
                     $('.alert-success').show('fade');
                     $('#successText').text('인증 메일을 입력하신 주소로 전송했어요!');
-                    setTimeout(function () {
-                        $('.alert-success').hide('fade');
-                    }, 3000);
                 } else {
+                    $('#spinner').removeClass('show');
                     $('.alert-danger').show('fade');
                     $('#dangerText').text('인증 메일 전송에 실패했어요...');
                     setTimeout(function () {

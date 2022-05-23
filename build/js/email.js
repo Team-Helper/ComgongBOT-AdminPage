@@ -55,7 +55,7 @@
                 /* 관련 성공창 렌더링 */
                 if (sendResult) {
                     $('#spinner').removeClass('show');
-                    $('.alert-success').show('fade');
+                    $('.alert-success').show();
                     $('#successText').text('인증 메일을 입력하신 주소로 전송했어요!');
                 } else {
                     $('#spinner').removeClass('show');

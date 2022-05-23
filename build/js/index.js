@@ -103,10 +103,10 @@ export function createAccount() { // 계정 생성 함수
                 const resultProfile = await $
                     .ajax(settings)
                     .done(function (response) { // 프로필 생성 완료 후
-                        console.log(response);
+                        // console.log(response);
                     })
                     .catch(err => {
-                        console.error(err);
+                        // console.error(err);
                         const user = auth.currentUser;
                         deleteUser(user);
                         return false;

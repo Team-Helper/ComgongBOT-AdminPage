@@ -34,9 +34,15 @@
             }, 2000);
         } else if (studentID < parseInt('08') || studentID > thisYear) { // 입력된 학번 값이 08 아래인 경우와 올해 년도보다 큰 값일 경우
             // console.error('increect studentID value');
-
             $('.alert-danger').show('fade');
             $('#dangerText').text('ComgongBOT은 08학번부터 지원해요.');
+            setTimeout(function () {
+                $('.alert-danger').hide('fade');
+            }, 2000);
+        } else if (studentID.length > 2) { // 입력된 학번 값이 3자리 이상일 경우
+            // console.error('increect studentID value');
+            $('.alert-danger').show('fade');
+            $('#dangerText').text('학번은 2자리로만 입력해주세요.');
             setTimeout(function () {
                 $('.alert-danger').hide('fade');
             }, 2000);

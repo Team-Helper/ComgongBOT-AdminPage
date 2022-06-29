@@ -62,7 +62,7 @@
                 if (sendResult) {
                     $('#spinner').removeClass('show');
                     $('.alert-success').show();
-                    $('#successText').text('인증 메일을 입력하신 주소로 전송했어요!');
+                    $('#successText').text('인증 메일을 입력하신 주소로 전송했어요! (메일이 안왔을 시 스팸함을 확인해주세요)');
                 } else {
                     $('#spinner').removeClass('show');
                     $('.alert-danger').show('fade');

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  vuedmin:
+    build: .
+    container_name: vue-container
+    image: vue-image
+    volumes:
+      - .:/app
+    restart: always
+    ports:
+      - 80:8080

@@ -1,37 +1,11 @@
-# [Vue Dashboard ArchitectUI](https://vue-dashboard-architectui-free.admin-dashboards.com)
+# ArchitectUI Vue Admin Dashboard (Lite)
 
-As a base framework, ArchitectUI Vue is powered by @vue/cli version 3.4.1 and Bootstrap 4 Vue implementation.
-It contains 15 handpicked Vue widgets and components that are perfectly integrated with each other in order to create a common design language.
-In order to use this Vue theme you’ll need at least basic coding skills. Don’t worry, the theme has pretty straight forward coding and uses Vue Router for the navigation links.
+[ArchitectUI](https://dashboardpack.com/theme-details/architectui-dashboard-html-pro) is one of the most popular admin dashboard templates ever released. It is used by thousands of developers to create webapps and SaaS totaling 100 million monthly active users. We have converted this template to support varions frontend frameworks such as [Angular](https://dashboardpack.com/theme-details/architectui-angular-7-bootstrap-material-design-pro?v=7516fd43adaa), [Vue](https://dashboardpack.com/theme-details/architectui-dashboard-vue-pro) and [Rect](https://dashboardpack.com/theme-details/architectui-dashboard-react-pro?v=7516fd43adaa). Thos particular version of ArchitectUI is based on Vue. It is free to use for testing and non-commercial use. 
 
-<br />
+This version of template is provided for free with no support. It is actively maintained and all the dependencies are kept updated and template is always safe to use in production.
 
-![Vue Dashboard ArchitectUI - Open-Source Admin Panel](https://raw.githubusercontent.com/admin-dashboards/static/master/vue-dashboard-architectui-free-intro.gif)
+For more admin template like this please check out our [Github profile](https://github.com/DashboardPack) or [website](https://dashboardpack.com/).
 
-<br />
+# ArchitectUI Preview
 
-## Build from sources
-
-```bash
-$ # clone the sources
-$ git clone https://github.com/admin-dashboards/vue-dashboard-architectui-free.git
-$ cd vue-dashboard-architectui-free
-$ yarn # install modules
-$ yarn serve # start the app in development mode
-$ yarn build # production build
-```
-
-<br />
-
-### Related Articles
-
-- [Open-Source Admin Dashboards](https://appseed.us/admin-dashboards/open-source) - provided by **AppSeed**
-- [Admin Dashboards](https://dev.to/sm0ke/admin-dashboards-open-source-and-free-4aep) - Open-Source and Free, article published on Dev.to
-- [Vue Dashboard](https://dev.to/sm0ke/vue-dashboard-open-source-apps-1gd1) - Open-Source and Free
-- [React Dashboards](https://dev.to/sm0ke/react-dashboards-open-source-apps-1c7j) - Open-Source and Free
-- [Admin Dashboards](https://blog.appseed.us/admin-dashboards-open-source-built-with-automation-tools/) - Open-Source and built with automation tools
- 
-<br />
- 
----
-[Vue Dashboard ArchitectUI](https://vue-dashboard-architectui-free.admin-dashboards.com) provided by **Admin-Dashboards.com**
+![ArchitectUI Vue Template preview](https://colorlib.com/wp/wp-content/uploads/sites/2/architectui-vue-free.jpg)

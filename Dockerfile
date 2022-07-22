@@ -5,4 +5,4 @@ RUN yarn
 RUN yarn global add @vue/cli
 COPY . .
 EXPOSE 8080
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "serve" ]

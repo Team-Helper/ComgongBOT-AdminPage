@@ -1,9 +1,9 @@
 version: '3'
 services:
-  vuedmin:
+  comgongBOT-admin:
     build: .
-    container_name: vue-container
-    image: vue-image
+    container_name: admin-container
+    image: admin-image
     volumes:
       - .:/app
     environment:

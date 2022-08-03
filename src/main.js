@@ -8,10 +8,6 @@ import App from './App'
 import Default from './Layout/Wrappers/baseLayout.vue';
 import Pages from './Layout/Wrappers/pagesLayout.vue';
 
-import dotenv from 'dotenv'
-
-dotenv.config();
-
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,14 +15,14 @@ import {initializeApp} from "firebase/app";
 // Firebase configuration For Firebase JS SDK v7.20.0 and later, measurementId
 // is optional
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    databaseURL: process.env.databaseURL,
-    projectId: process.env.projectId,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId,
-    appId: process.env.appId,
-    measurementId: process.env.measurementId
+    apiKey: process.env.VUE_APP_apiKey,
+    authDomain: process.env.VUE_APP_authDomain,
+    databaseURL: process.env.VUE_APP_databaseURL,
+    projectId: process.env.VUE_APP_projectId,
+    storageBucket: process.env.VUE_APP_storageBucket,
+    messagingSenderId: process.env.VUE_AP_messagingSenderId,
+    appId: process.env.VUE_APP_appId,
+    measurementId: process.env.VUE_APP_measurementId
 };
 
 // Initialize Firebase

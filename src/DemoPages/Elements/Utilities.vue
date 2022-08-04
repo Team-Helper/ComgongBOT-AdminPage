@@ -308,5 +308,5 @@
             subheading: 'These are helpers that speed up the dev time for various components and effects.',
             icon: 'pe-7s-wristwatch icon-gradient bg-deep-blue',
         }),
-    }
+    };
 </script>

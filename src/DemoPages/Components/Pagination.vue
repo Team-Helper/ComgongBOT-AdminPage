@@ -70,8 +70,8 @@
     }),
     methods: {
       linkGen (pageNum) {
-        return '#page/' + pageNum + '/foobar'
+        return '#page/' + pageNum + '/foobar';
       }
     }
-  }
+  };
 </script>

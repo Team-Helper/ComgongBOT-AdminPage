@@ -1,5 +1,5 @@
 //Importing Line class from the vue-chartjs wrapper
-import {Line} from 'vue-chartjs'
+import {Line} from 'vue-chartjs';
 
 //Exporting this so it can be used in other components
 export default {
@@ -70,10 +70,10 @@ export default {
                 responsive: true,
                 maintainAspectRatio: false
             }
-        }
+        };
     },
     mounted() {
         //renderChart function renders the chart with the datacollection and options object.
-        this.renderChart(this.datacollection, this.options)
+        this.renderChart(this.datacollection, this.options);
     }
-}
+};

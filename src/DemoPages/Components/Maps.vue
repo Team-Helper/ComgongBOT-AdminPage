@@ -18,8 +18,8 @@
 
   import PageTitle from "../../Layout/Components/PageTitle.vue";
 
-  import Vue from 'vue'
-  import * as VueGoogleMaps from 'vue2-google-maps'
+  import Vue from 'vue';
+  import * as VueGoogleMaps from 'vue2-google-maps';
 
   Vue.use(VueGoogleMaps, {
     load: {
@@ -64,5 +64,5 @@
     }),
 
 
-  }
+  };
 </script>

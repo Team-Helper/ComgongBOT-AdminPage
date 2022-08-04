@@ -69,5 +69,5 @@
         'rightbottom', 'left', 'leftbottom'
       ]
     }),
-  }
+  };
 </script>

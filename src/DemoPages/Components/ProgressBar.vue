@@ -78,18 +78,18 @@
 
     methods: {
       clicked () {
-        this.counter = Math.random() * this.max
+        this.counter = Math.random() * this.max;
         // console.log('Change progress to ' + Math.round(this.counter * 100) / 100)
       }
     },
     mounted () {
       this.timer = setInterval(() => {
-        this.bars.forEach(bar => bar.value = 25 + (Math.random() * 75))
-      }, 2000)
+        this.bars.forEach(bar => bar.value = 25 + (Math.random() * 75));
+      }, 2000);
     },
     beforeDestroy () {
-      clearInterval(this.timer)
-      this.timer = null
+      clearInterval(this.timer);
+      this.timer = null;
     }
-  }
+  };
 </script>

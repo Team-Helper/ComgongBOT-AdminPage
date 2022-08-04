@@ -20,8 +20,8 @@
 </template>
 
 <script>
-    import {SidebarMenu} from 'vue-sidebar-menu'
-    import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+    import {SidebarMenu} from 'vue-sidebar-menu';
+    import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 
     export default {
         components: {
@@ -202,7 +202,7 @@
 
                 windowWidth: 0,
 
-            }
+            };
         },
         props: {
             sidebarbg: String,
@@ -250,12 +250,12 @@
                 window.addEventListener('resize', this.getWindowWidth);
 
                 //Init
-                this.getWindowWidth()
-            })
+                this.getWindowWidth();
+            });
         },
 
         beforeDestroy() {
             window.removeEventListener('resize', this.getWindowWidth);
         }
-    }
+    };
 </script>

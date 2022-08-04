@@ -179,7 +179,7 @@
   import PageTitle from "../../Layout/Components/PageTitle.vue";
 
 
-  import {library} from '@fortawesome/fontawesome-svg-core'
+  import {library} from '@fortawesome/fontawesome-svg-core';
   import {
     faCoffee,
     faCog,
@@ -206,8 +206,8 @@
     faArrowCircleUp,
     faArrowDown,
     faArrowLeft,
-  } from '@fortawesome/free-solid-svg-icons'
-  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+  } from '@fortawesome/free-solid-svg-icons';
+  import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
   library.add(
     faCoffee,
@@ -253,5 +253,5 @@
     }),
 
 
-  }
+  };
 </script>

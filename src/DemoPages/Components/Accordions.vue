@@ -119,5 +119,5 @@
         synth nesciunt you probably haven't heard of them accusamus labore VHS.
       `
     }),
-  }
+  };
 </script>

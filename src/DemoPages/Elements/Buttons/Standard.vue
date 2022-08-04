@@ -195,5 +195,5 @@
         {text: 'Radio 4', value: 'radio4'}
       ]
     })
-  }
+  };
 </script>

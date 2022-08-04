@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import router from './router'
+import Vue from 'vue';
+import router from './router';
 
-import BootstrapVue from "bootstrap-vue"
+import BootstrapVue from "bootstrap-vue";
 
-import App from './App'
+import App from './App';
 
 import Default from './Layout/Wrappers/baseLayout.vue';
 import Pages from './Layout/Wrappers/pagesLayout.vue';

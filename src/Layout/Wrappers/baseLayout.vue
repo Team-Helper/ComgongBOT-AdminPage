@@ -33,10 +33,10 @@
     import Footer from "../Components/Footer";
     // import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
-    import {library} from '@fortawesome/fontawesome-svg-core'
+    import {library} from '@fortawesome/fontawesome-svg-core';
     import {
         faCog,
-    } from '@fortawesome/free-solid-svg-icons'
+    } from '@fortawesome/free-solid-svg-icons';
     // import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
     library.add(
@@ -51,5 +51,5 @@
         },
         methods: {
         },
-    }
+    };
 </script>

@@ -1,17 +1,51 @@
 {
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "hosting": {
-    "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
-  "storage": {
-    "rules": "storage.rules"
-  }
+    "firestore": {
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "hosting": {
+        "public": "build",
+        "ignore": [
+            "firebase.json", "**/.*", "**/node_modules/**"
+        ],
+        "cleanUrls": true,
+        "headers": [
+            {
+                "source": "**",
+                "headers": [
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    }
+                ]
+            }, {
+                "source": "**/*.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=0, no-cache"
+                    }
+                ]
+            }, {
+                "source": "**/*.@(css|js)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=3500"
+                    }
+                ]
+            }, {
+                "source": "**/*.@(jpg|jpeg|gif|png)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=3300"
+                    }
+                ]
+            }
+        ]
+    },
+    "storage": {
+        "rules": "storage.rules"
+    }
 }

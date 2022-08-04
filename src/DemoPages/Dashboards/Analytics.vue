@@ -802,13 +802,13 @@
 <script>
 
     import PageTitle from "../../Layout/Components/PageTitle.vue";
-    import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+    import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 
     import chart1 from './Analytics/chart1';
     // import chart2 from './Analytics/chart2';
     // import chart3 from './Analytics/chart3';
 
-    import {library} from '@fortawesome/fontawesome-svg-core'
+    import {library} from '@fortawesome/fontawesome-svg-core';
     import {
         faTrashAlt,
         faCheck,
@@ -816,8 +816,8 @@
         faAngleDown,
         faAngleUp,
         faTh,
-    } from '@fortawesome/free-solid-svg-icons'
-    import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+    } from '@fortawesome/free-solid-svg-icons';
+    import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
     library.add(
         faTrashAlt,
@@ -846,7 +846,7 @@
 
         methods: {},
 
-    }
+    };
 
 
 </script>

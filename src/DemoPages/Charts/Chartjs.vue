@@ -46,14 +46,14 @@
 
   import PageTitle from "../../Layout/Components/PageTitle.vue";
 
-  import doughnut from './Chartjs/Doughnut'
-  import radar from './Chartjs/Radar'
-  import polar from './Chartjs/Polar'
-  import pie from './Chartjs/Pie'
-  import lineeg from './Chartjs/Line'
-  import areaeg from './Chartjs/Area'
-  import bar from './Chartjs/Bar'
-  import barhoriz from './Chartjs/BarHoriz'
+  import doughnut from './Chartjs/Doughnut';
+  import radar from './Chartjs/Radar';
+  import polar from './Chartjs/Polar';
+  import pie from './Chartjs/Pie';
+  import lineeg from './Chartjs/Line';
+  import areaeg from './Chartjs/Area';
+  import bar from './Chartjs/Bar';
+  import barhoriz from './Chartjs/BarHoriz';
 
   export default {
     components: {
@@ -76,5 +76,5 @@
     }),
 
 
-  }
+  };
 </script>

@@ -55,7 +55,6 @@
             "semi": "error",
             "no-unused-vars": "error",
             "default-case": "error",
-            "default-case-last": "error",
             "id-length": "error",
             "spaced-comment": ["error", "always"]
         },

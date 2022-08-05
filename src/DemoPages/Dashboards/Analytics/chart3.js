@@ -1,14 +1,14 @@
-//Importing Line class from the vue-chartjs wrapper
+// Importing Line class from the vue-chartjs wrapper
 import {Line} from 'vue-chartjs';
 
-//Exporting this so it can be used in other components
+// Exporting this so it can be used in other components
 export default {
     extends: Line,
     data() {
         return {
 
             datacollection: {
-                //Data to be represented on x-axis
+                // Data to be represented on x-axis
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',],
                 datasets: [
                     {
@@ -35,7 +35,7 @@ export default {
                     }
                 ]
             },
-            //Chart.js options that controls the appearance of the chart
+            // Chart.js options that controls the appearance of the chart
             options: {
                 layout: {
                     padding: {
@@ -73,7 +73,7 @@ export default {
         };
     },
     mounted() {
-        //renderChart function renders the chart with the datacollection and options object.
+        // renderChart function renders the chart with the datacollection and options object.
         this.renderChart(this.datacollection, this.options);
     }
 };

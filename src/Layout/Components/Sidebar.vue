@@ -249,7 +249,7 @@
             this.$nextTick(function () {
                 window.addEventListener('resize', this.getWindowWidth);
 
-                //Init
+                // Init
                 this.getWindowWidth();
             });
         },

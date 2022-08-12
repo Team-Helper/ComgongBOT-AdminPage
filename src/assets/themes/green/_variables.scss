@@ -79,7 +79,8 @@ $theme-colors: map-merge(
                         "light": $light,
                         "dark": $dark,
                         "focus": $focus,
-                        "alternate": $alt
+                        "alternate": $alt,
+                        "blue": $blue
                 ),
                 $theme-colors
 );

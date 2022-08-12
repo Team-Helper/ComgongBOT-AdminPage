@@ -37,6 +37,12 @@ export default new Router({
             meta: {layout: 'userpages'},
             component: () => import('../DemoPages/UserPages/ForgotPasswordBoxed.vue'),
         },
+        {
+            path: '/email',
+            name: 'email',
+            meta: {layout: 'userpages'},
+            component: () => import('../AdminPages/email.vue'),
+        },
 
         // Elements
 

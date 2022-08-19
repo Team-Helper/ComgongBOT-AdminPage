@@ -6,10 +6,11 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="h5 modal-title text-left text-blue">
-                                <b-img src="../assets/images/comgongBOT-logo.png"></b-img>
-                                <h5 class="mt-2">
-                                    <b>&nbsp; 이메일 인증</b>
-                                </h5>
+                                <b-img
+                                    :src="require('../assets/images/comgongBOT-logo.png')"
+                                    width="42"
+                                    alt="comgongBOT"></b-img>
+                                <b>&nbsp; 이메일 인증</b>
                             </div>
                             <br>
                                 <b-form-group

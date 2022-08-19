@@ -6,53 +6,63 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="h5 modal-title text-left text-blue">
-                                <img
+                                <b-img
+                                    :src="require('../assets/images/comgongBOT-logo.png')"
                                     width="42"
-                                    class="rounded-circle"
-                                    src="../assets/images/comgongBOT-logo.png"
-                                    alt="">
-                                    <b>&nbsp; 이메일 인증</b>
-                                </div>
-                                <br>
-                                    <div class="position-relative form-group">
-                                        <label for="exampleEmail" class="">
-                                            <b>학교 이메일 주소</b>
-                                        </label>
-                                        <input
-                                            required
-                                            name="email"
-                                            id="exampleEmail"
-                                            placeholder="ex) test@sungkyul.ac.kr"
-                                            type="email"
-                                            class="form-control"></div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">
-                                                <b>학년 선택</b>
-                                            </label>
-                                            <select name="select" id="exampleSelect" class="form-control">
-                                                <option>1학년</option>
-                                                <option>2학년</option>
-                                                <option>3학년</option>
-                                                <option>4학년</option>
-                                            </select>
-                                        </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleStudentId" class="">
-                                                <b>학번 입력</b>
-                                            </label>
-                                            <input
-                                                name="StudentId"
-                                                id="exampleStudentId"
-                                                placeholder="ex) 22"
-                                                type="number"
-                                                class="form-control"></div>
-                                        </div>
-                                        <div class="modal-footer clearfix">
-                                            <b-button block="block" variant="blue">제출</b-button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </b-col>
+                                    alt="comgongBOT"></b-img>
+                                <b>&nbsp; 이메일 인증</b>
+                            </div>
+                            <br>
+                                <b-form-group
+                                    id="exampleInputGroup1"
+                                    label-for="exampleInput1"
+                                    label="학교 이메일 주소"
+                                    label-class="font-weight-bold">
+                                    <b-form-input
+                                        id="exampleInput1"
+                                        type="email"
+                                        required="required"
+                                        placeholder="ex) test@sungkyul.ac.kr"></b-form-input>
+                                </b-form-group>
+                                <b-form-group
+                                    id="exampleInputGroup2"
+                                    label-for="exampleInput2"
+                                    label="학년 선택"
+                                    label-class="font-weight-bold">
+                                    <b-form-select v-model="selected">
+                                        <b-form-select-option :value="null" disabled="disabled">-- 학년을 선택하세요 --</b-form-select-option>
+                                        <b-form-select-option value="1">1학년</b-form-select-option>
+                                        <b-form-select-option value="2">2학년</b-form-select-option>
+                                        <b-form-select-option value="3">3학년</b-form-select-option>
+                                        <b-form-select-option value="4">4학년</b-form-select-option>
+                                    </b-form-select>
+                                </b-form-group>
+                                <b-form-group
+                                    id="exampleInputGroup3"
+                                    label-for="exampleInput3"
+                                    label="학번 입력"
+                                    label-class="font-weight-bold">
+                                    <b-form-input
+                                        id="exampleInput3"
+                                        type="number"
+                                        required="required"
+                                        placeholder="ex) 22"></b-form-input>
+                                </b-form-group>
+                            </div>
+                            <div class="modal-footer clearfix">
+                                <b-button block="block" variant="blue" size="lg">제출</b-button>
+                            </div>
                         </div>
                     </div>
-                </template>
+                </b-col>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        export default {
+            data() {
+                return {selected: null};
+            }
+        };
+    </script>

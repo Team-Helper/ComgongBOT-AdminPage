@@ -32,7 +32,7 @@
                                     <b-form-group
                                         id="exampleInputGroup2"
                                         label-for="exampleInput2"
-                                        label="학년 선택"
+                                        label="학년"
                                         label-class="font-weight-bold"
                                         description="본인의 학년을 선택해주세요.">
                                         <b-form-select v-model="form.grade" required="required">
@@ -46,7 +46,7 @@
                                     <b-form-group
                                         id="exampleInputGroup3"
                                         label-for="exampleInput3"
-                                        label="학번 입력"
+                                        label="학번"
                                         label-class="font-weight-bold"
                                         description="본인의 학번 숫자 2자리를 입력해주세요.">
                                         <b-form-input

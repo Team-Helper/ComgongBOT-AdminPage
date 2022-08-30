@@ -71,6 +71,8 @@
     </template>
 
     <script>
+        import {getAuth, sendSignInLinkToEmail} from "firebase/auth";
+
         export default {
             data() {
                 return {
@@ -85,7 +87,40 @@
             methods: {
                 submit(event) {
                     event.preventDefault();
-                    console.log(this.form);
+                    // console.log(this.form);
+                    const auth = getAuth();
+                    const email = this.form.email + '@sungkyul.ac.kr';
+                    const grade = this.form.grade;
+                    const studentID = this.form.studentID;
+                    const urlParams = new URL(window.location.href).searchParams;
+                    const userKey = urlParams.get('variable');
+                    const newURL = new URL(
+                        'http://localhost:8080/linkpage?email=?grade=?studentID=?userKey='
+                    );
+                    newURL
+                        .searchParams
+                        .set('email', email);
+                    newURL
+                        .searchParams
+                        .set('grade', grade);
+                    newURL
+                        .searchParams
+                        .set('studentID', studentID);
+                    newURL
+                        .searchParams
+                        .set('userKey', userKey);
+                    const webLink = newURL.href;
+                    console.log(webLink);
+                    sendSignInLinkToEmail(auth, email, {
+                        url: webLink,
+                        handleCodeInApp: true
+                    })
+                        .then(() => {
+                            console.log('send email success!');
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
                 }
             }
         };

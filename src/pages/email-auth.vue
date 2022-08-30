@@ -94,22 +94,22 @@
                     const studentID = this.form.studentID;
                     const urlParams = new URL(window.location.href).searchParams;
                     const userKey = urlParams.get('variable');
-                    const newURL = new URL(
+                    const linkURL = new URL(
                         'http://localhost:8080/email-link?email=?grade=?studentID=?userKey='
                     );
-                    newURL
+                    linkURL
                         .searchParams
                         .set('email', email);
-                    newURL
+                    linkURL
                         .searchParams
                         .set('grade', grade);
-                    newURL
+                    linkURL
                         .searchParams
                         .set('studentID', studentID);
-                    newURL
+                    linkURL
                         .searchParams
                         .set('userKey', userKey);
-                    const webLink = newURL.href;
+                    const webLink = linkURL.href;
                     console.log(webLink);
                     sendSignInLinkToEmail(auth, email, {
                         url: webLink,

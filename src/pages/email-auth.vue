@@ -95,7 +95,7 @@
                     const urlParams = new URL(window.location.href).searchParams;
                     const userKey = urlParams.get('variable');
                     const newURL = new URL(
-                        'http://localhost:8080/linkpage?email=?grade=?studentID=?userKey='
+                        'http://localhost:8080/email-link?email=?grade=?studentID=?userKey='
                     );
                     newURL
                         .searchParams

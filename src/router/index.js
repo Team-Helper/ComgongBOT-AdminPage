@@ -11,12 +11,20 @@ export default new Router({
     routes: [
         // our pages
         {
-            path: '/email',
-            name: 'email',
+            path: '/email-auth',
+            name: 'emailAuth',
             meta: {
                 layout: 'userpages'
             },
-            component: () => import ('../pages/email.vue')
+            component: () => import ('../pages/email-auth.vue')
+        },
+        {
+            path: '/email-link',
+            name: 'emailLink',
+            meta: {
+                layout: 'userpages'
+            },
+            component: () => import ('../pages/email-link.vue')
         },
 
         // Dashboards

@@ -1,10 +1,14 @@
 <template>
     <div>
         <div class="d-flex h-100 justify-content-center align-items-center">
-            <b-col md="8" class="mx-auto app-login-box">
+            <div class="alert alert-warning fade show" role="alert" v-show="!key">
+                <h5>비정상 접근!</h5>
+                <p class="mb-0">해당 페이지는 반드시 id 값이 필요합니다.</p>
+            </div>
+            <b-col md="8" class="mx-auto app-login-box" v-show="key">
                 <div class="modal-dialog w-100 mx-auto">
                     <div class="modal-content">
-                        <b-form @submit="submit" v-show="key">
+                        <b-form @submit="submit">
                             <div class="modal-body">
                                 <div class="h5 modal-title text-left text-blue">
                                     <b-img
@@ -28,20 +32,6 @@
                                                 required="required"
                                                 autofocus="autofocus"></b-form-input>
                                         </b-input-group>
-                                    </b-form-group>
-                                    <b-form-group
-                                        id="exampleInputGroup2"
-                                        label-for="exampleInput2"
-                                        label="학년"
-                                        label-class="font-weight-bold"
-                                        description="본인의 학년을 선택해주세요.">
-                                        <b-form-select v-model="form.grade" required="required">
-                                            <b-form-select-option :value="null" disabled="disabled">-- 학년을 선택하세요 --</b-form-select-option>
-                                            <b-form-select-option value="1">1학년</b-form-select-option>
-                                            <b-form-select-option value="2">2학년</b-form-select-option>
-                                            <b-form-select-option value="3">3학년</b-form-select-option>
-                                            <b-form-select-option value="4">4학년</b-form-select-option>
-                                        </b-form-select>
                                     </b-form-group>
                                     <b-form-group
                                         id="exampleInputGroup3"
@@ -78,11 +68,17 @@
                 return {
                     form: {
                         email: '',
-                        grade: null,
                         studentID: ''
                     },
                     key: true
                 };
+            },
+            created() {
+                const urlParams = new URL(window.location.href).searchParams;
+                const userKey = urlParams.get('variable');
+                if (!userKey) {
+                    this.key = false;
+                }
             },
             methods: {
                 submit(event) {
@@ -90,19 +86,15 @@
                     // console.log(this.form);
                     const auth = getAuth();
                     const email = this.form.email + '@sungkyul.ac.kr';
-                    const grade = this.form.grade;
                     const studentID = this.form.studentID;
                     const urlParams = new URL(window.location.href).searchParams;
                     const userKey = urlParams.get('variable');
                     const linkURL = new URL(
-                        'http://localhost:8080/email-link?email=?grade=?studentID=?userKey='
+                        'http://localhost:8080/email-link?email=?studentID=?userKey='
                     );
                     linkURL
                         .searchParams
                         .set('email', email);
-                    linkURL
-                        .searchParams
-                        .set('grade', grade);
                     linkURL
                         .searchParams
                         .set('studentID', studentID);

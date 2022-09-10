@@ -6,6 +6,7 @@
                 title="비정상 접근!"
                 ok-only="ok-only"
                 no-close-on-backdrop="no-close-on-backdrop"
+                hide-header-close
                 @ok="handleOk">해당 페이지는 반드시
                 <code>id 값</code>이 필요합니다.</b-modal>
             <b-modal

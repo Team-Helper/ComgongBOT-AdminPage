@@ -68,8 +68,7 @@
                         // console.log(data);
                         let config = {
                             method: 'post',
-                            url: 'https://asia-northeast1-comgong-bot.cloudfunctions.net/middleWare/input/profil' +
-                                    'e',
+                            url: process.env.VUE_APP_URL,
                             headers: {
                                 'Content-Type': 'application/json'
                             },

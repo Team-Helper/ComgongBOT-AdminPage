@@ -15,7 +15,20 @@
                 spin="spin"
                 fixedWidth="fixedWidth"
                 size="8x"/>
-            <p v-show="result">Success!</p>
+            <b-modal
+                v-model="authSuccess"
+                title="이메일 인증 성공!"
+                hide-footer="hide-footer"
+                hide-backdrop="hide-backdrop"
+                no-close-on-backdrop="no-close-on-backdrop"
+                hide-header-close="hide-header-close">이제 ComgongBOT로 돌아가 자유롭게 이용해보세요.</b-modal>
+            <b-modal
+                v-model="authFailed"
+                title="이메일 인증 실패..."
+                hide-footer="hide-footer"
+                hide-backdrop="hide-backdrop"
+                no-close-on-backdrop="no-close-on-backdrop"
+                hide-header-close="hide-header-close">빠른 수정을 위해 개발자 메일주소를 통해 알려주세요!</b-modal>
         </div>
     </div>
 </template>
@@ -24,34 +37,64 @@
     import {library} from '@fortawesome/fontawesome-svg-core';
     import {faSpinner} from '@fortawesome/free-solid-svg-icons';
     import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+    import axios from 'axios';
     library.add(faSpinner);
 
     export default {
         data() {
-            return {modalShow: false, loading: false};
+            return {modalShow: true, loading: false, authSuccess: false, authFailed: false};
         },
         created() {
             const auth = getAuth();
-            if (isSignInWithEmailLink(auth, window.location.href)) { // 링크를 누른 경우
+            if (isSignInWithEmailLink(auth, window.location.href)) { // 인증 메일의 링크 통해 접근한 경우
+                this.modalShow = false;
                 this.loading = true;
                 // console.log(window.location.href);
-                /* 파라미터 값들 각각 변수처리 */
                 const currentURL = (new URL(window.location.href)).searchParams;
                 const email = currentURL.get('email');
                 const studentID = currentURL.get('studentID');
                 const userKey = currentURL.get('userKey');
-                console.log(email, studentID, userKey);
+                // console.log(email, studentID, userKey);
                 signInWithEmailLink(auth, email, window.location.href)
-                    .then((result) => {
-                        // Clear email from storage.
-                        console.log(result);
-                        this.loading = false;
+                    .then(() => {
+                        /* 이메일 링크 AUTH 후 컴공봇 기능인 사용자 프로필 생성 API에 사용자 입력 값을 전달하여 프로필 DB 생성 시도 */
+                        let data = JSON.stringify({
+                            "Data": {
+                                "email": email,
+                                "studentID": studentID,
+                                "userKey": userKey
+                            }
+                        });
+                        // console.log(data);
+                        let config = {
+                            method: 'post',
+                            url: 'https://asia-northeast1-comgong-bot.cloudfunctions.net/middleWare/input/profil' +
+                                    'e',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: data
+                        };
+                        // console.log(config);
+
+                        axios(config)
+                            .then(() => {
+                                // console.log(JSON.stringify(response.data));
+                                this.loading = false;
+                                this.authSuccess = true;
+                            })
+                            .catch(() => {
+                                // console.error(err);
+                                this.loading = false;
+                                this.authFailed = true;
+                            });
+
                     })
-                    .catch((err) => {
-                        console.error(err);
+                    .catch(() => {
+                        // console.error(err);
+                        this.loading = false;
+                        this.modalShow = true;
                     });
-            } else {
-                this.modalShow = true;
             }
         },
         methods: {

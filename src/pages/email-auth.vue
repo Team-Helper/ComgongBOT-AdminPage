@@ -116,7 +116,7 @@
                     const userKey = urlParams.get('variable');
                     /* 주소에 사용자 입력 값을 쿼리스트링으로 추가하여 사용자 프로필 생성 관련 값으로 쓰이기 위해 전달*/
                     const linkURL = new URL(
-                        'http://localhost:8080/email-link?email=?studentID=?userKey='
+                        'https://comgong-bot.web.app/email-link?email=?studentID=?userKey='
                     );
                     linkURL
                         .searchParams

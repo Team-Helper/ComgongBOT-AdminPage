@@ -4,10 +4,9 @@
             <b-modal
                 v-model="modalShow"
                 title="비정상 접근!"
-                ok-only="ok-only"
+                hide-footer="hide-footer"
                 no-close-on-backdrop="no-close-on-backdrop"
-                hide-header-close="hide-header-close"
-                @ok="handleOk">올바른 접근이 필요합니다.</b-modal>
+                hide-header-close="hide-header-close">올바른 접근이 필요합니다.</b-modal>
             <font-awesome-icon
                 v-show="loading"
                 class="text-blue"
@@ -94,13 +93,6 @@
                         this.loading = false;
                         this.modalShow = true;
                     });
-            }
-        },
-        methods: {
-            handleOk() {
-                this
-                    .$router
-                    .go(-1);
             }
         },
         components: {

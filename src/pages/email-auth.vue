@@ -14,16 +14,16 @@
                 v-model="sendSuccess"
                 title="이메일 전송 완료!"
                 ok-only="ok-only"
-                hide-backdrop="hide-backdrop"
-                no-close-on-backdrop="no-close-on-backdrop">입력하신 이메일 주소로 인증 관련 메일을 전송했어요!
+                no-close-on-backdrop="no-close-on-backdrop"
+                hide-backdrop="hide-backdrop">입력하신 이메일 주소로 인증 관련 메일을 전송했어요!
                 <code>(메일이 오지 않았으면 스팸함을 확인해주세요)</code>
             </b-modal>
             <b-modal
                 v-model="sendFailed"
                 title="이메일 전송 실패..."
                 ok-only="ok-only"
-                hide-backdrop="hide-backdrop"
-                no-close-on-backdrop="no-close-on-backdrop">빠른 수정을 위해 개발자 메일주소를 통해 알려주세요!
+                no-close-on-backdrop="no-close-on-backdrop"
+                hide-backdrop="hide-backdrop">빠른 수정을 위해 개발자 메일주소를 통해 알려주세요!
             </b-modal>
             <b-col md="8" class="mx-auto app-login-box" v-show="key">
                 <div class="modal-dialog w-100 mx-auto">

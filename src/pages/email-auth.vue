@@ -58,7 +58,7 @@
                                         label-for="exampleInput3"
                                         label="학번"
                                         label-class="font-weight-bold"
-                                        description="본인의 학번 끝에 2자리를 입력해주세요.">
+                                        description="본인의 학번을 입학년도인 숫자 2자리로 입력해주세요.">
                                         <b-form-input
                                             v-model="form.studentID"
                                             id="exampleInput3"

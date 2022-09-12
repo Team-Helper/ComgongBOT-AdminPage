@@ -25,6 +25,13 @@
                 no-close-on-backdrop="no-close-on-backdrop"
                 hide-backdrop="hide-backdrop">빠른 수정을 위해 개발자 메일주소를 통해 알려주세요!
             </b-modal>
+            <b-modal
+                v-model="alreadyHave"
+                title="중복 가입"
+                ok-only="ok-only"
+                no-close-on-backdrop="no-close-on-backdrop"
+                hide-backdrop="hide-backdrop">이미 가입된 학생 입니다.
+            </b-modal>
             <b-col md="8" class="mx-auto app-login-box" v-show="key">
                 <div class="modal-dialog w-100 mx-auto">
                     <div class="modal-content">
@@ -81,7 +88,7 @@
     </template>
 
     <script>
-        import {getAuth, sendSignInLinkToEmail} from "firebase/auth";
+        import {getAuth, sendSignInLinkToEmail, fetchSignInMethodsForEmail} from "firebase/auth";
 
         export default {
             data() {
@@ -90,10 +97,11 @@
                         email: '',
                         studentID: ''
                     },
-                    key: false, // 정상 접근 UI 출력 초기 Flag 값
-                    modalShow: true, // 비정상 접근 UI 출력 초기 Flag 값
+                    key: false, // 정상 접근 관련 UI 출력 초기 Flag 값
+                    modalShow: true, // 비정상 접근 관련 UI 출력 초기 Flag 값
                     sendSuccess: false, // 이메일 주소 인증 관련 링크 전송 성공 UI 출력 초기 Flag 값
-                    sendFailed: false // 이메일 주소 인증 관련 링크 전송 실패 UI 출력 초기 Flag 값
+                    sendFailed: false, // 이메일 주소 인증 관련 링크 전송 실패 UI 출력 초기 Flag 값
+                    alreadyHave: false // 중복 가입 방지 관련 UI 출력 초기 Flag 값
                 };
             },
             created() {
@@ -111,34 +119,46 @@
                     // console.log(this.form);
                     const auth = getAuth();
                     const email = this.form.email + '@sungkyul.ac.kr';
-                    const studentID = this.form.studentID;
-                    const urlParams = new URL(window.location.href).searchParams;
-                    const userKey = urlParams.get('variable');
-                    /* 주소에 사용자 입력 값을 쿼리스트링으로 추가하여 사용자 프로필 생성 관련 값으로 쓰이기 위해 전달*/
-                    const linkURL = new URL(
-                        'https://comgong-bot.web.app/#/email-link?email=?studentID=?userKey='
-                    );
-                    linkURL
-                        .searchParams
-                        .set('email', email);
-                    linkURL
-                        .searchParams
-                        .set('studentID', studentID);
-                    linkURL
-                        .searchParams
-                        .set('userKey', userKey);
-                    const webLink = linkURL.href;
-                    // console.log(webLink);
-                    sendSignInLinkToEmail(auth, email, {
-                        url: webLink,
-                        handleCodeInApp: true
-                    })
-                        .then(() => {
-                            console.log('send email success!');
-                            this.sendSuccess = true;
+                    fetchSignInMethodsForEmail(auth, email)
+                        .then((result) => {
+                            // console.log(result);
+                            if (result.length === 0) {
+                                const studentID = this.form.studentID;
+                                const urlParams = new URL(window.location.href).searchParams;
+                                const userKey = urlParams.get('variable');
+                                /* 주소에 사용자 입력 값을 쿼리스트링으로 추가하여 사용자 프로필 생성 관련 값으로 쓰이기 위해 전달*/
+                                const linkURL = new URL(
+                                    'https://comgong-bot.web.app/#/email-link?email=?studentID=?userKey='
+                                );
+                                linkURL
+                                    .searchParams
+                                    .set('email', email);
+                                linkURL
+                                    .searchParams
+                                    .set('studentID', studentID);
+                                linkURL
+                                    .searchParams
+                                    .set('userKey', userKey);
+                                const webLink = linkURL.href;
+                                // console.log(webLink);
+                                sendSignInLinkToEmail(auth, email, {
+                                    url: webLink,
+                                    handleCodeInApp: true
+                                })
+                                    .then(() => {
+                                        console.log('send email success!');
+                                        this.sendSuccess = true;
+                                    })
+                                    .catch(() => {
+                                        // console.error(err);
+                                        this.sendFailed = true;
+                                    });
+                            } else {
+                                this.alreadyHave = true;
+                            }
                         })
-                        .catch((err) => {
-                            console.error(err);
+                        .catch(() => {
+                            // console.error(err);
                             this.sendFailed = true;
                         });
                 },

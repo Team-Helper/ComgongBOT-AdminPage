@@ -20,7 +20,7 @@ const firebaseConfig = {
     databaseURL: process.env.VUE_APP_databaseURL,
     projectId: process.env.VUE_APP_projectId,
     storageBucket: process.env.VUE_APP_storageBucket,
-    messagingSenderId: process.env.VUE_AP_messagingSenderId,
+    messagingSenderId: process.env.VUE_APP_messagingSenderId,
     appId: process.env.VUE_APP_appId,
     measurementId: process.env.VUE_APP_measurementId
 };

@@ -146,7 +146,7 @@
                                     handleCodeInApp: true
                                 })
                                     .then(() => {
-                                        console.log('send email success!');
+                                        // console.log('send email success!');
                                         this.sendSuccess = true;
                                     })
                                     .catch(() => {

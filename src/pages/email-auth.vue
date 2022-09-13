@@ -30,7 +30,7 @@
                 title="중복 가입"
                 ok-only="ok-only"
                 no-close-on-backdrop="no-close-on-backdrop"
-                hide-backdrop="hide-backdrop">이미 가입된 학생 입니다.
+                hide-backdrop="hide-backdrop">이미 가입된 학생이에요.
             </b-modal>
             <b-col md="8" class="mx-auto app-login-box" v-show="key">
                 <div class="modal-dialog w-100 mx-auto">

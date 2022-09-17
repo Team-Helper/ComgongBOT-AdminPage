@@ -26,7 +26,7 @@ export default new Router({
             component: () => import ('../pages/email-link.vue')
         },
         {
-            path: '/login',
+            path: '/',
             name: 'login',
             meta: {
                 layout: 'userpages'
@@ -37,12 +37,9 @@ export default new Router({
         // Dashboards
 
         {
-            path: '/',
-            name: 'login-boxed',
-            meta: {
-                layout: 'userpages'
-            },
-            component: () => import ('../DemoPages/UserPages/LoginBoxed.vue')
+            path: '/analytics',
+            name: 'analytics',
+            component: () => import ('../DemoPages/Dashboards/Analytics.vue')
         },
 
         // Pages

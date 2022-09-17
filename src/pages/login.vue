@@ -6,7 +6,7 @@
                     <div class="modal-content">
                         <b-form @submit="submit">
                             <div class="modal-body">
-                                <div class="h5 modal-title text-left text-blue">
+                                <div class="h5 modal-title text-center text-blue">
                                     <b-img
                                         :src="require('../assets/images/comgongBOT-logo.png')"
                                         width="42"
@@ -41,27 +41,27 @@
                                     <div class="mb-0">
                                         <a href="javascript:void(0);" class="text-blue btn-link">비밀번호를 잊었습니까?</a>
                                     </div>
-                                    <br></div>
-                                    <div class="modal-footer clearfix">
-                                        <b-button type="submit" block="block" variant="blue" size="lg">로그인</b-button>
-                                    </div>
-                                </b-form>
-                            </div>
+                                </div>
+                                <div class="modal-footer clearfix">
+                                    <b-button type="submit" block="block" variant="blue" size="lg">로그인</b-button>
+                                </div>
+                            </b-form>
                         </div>
-                    </b-col>
-                </div>
+                    </div>
+                </b-col>
             </div>
-        </template>
+        </div>
+    </template>
 
-        <script>
-            export default {
-                data() {
-                    return {
-                        form: {
-                            id: '',
-                            password: ''
-                        }
-                    };
-                }
-            };
-        </script>
+    <script>
+        export default {
+            data() {
+                return {
+                    form: {
+                        id: '',
+                        password: ''
+                    }
+                };
+            }
+        };
+    </script>

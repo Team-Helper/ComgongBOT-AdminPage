@@ -25,6 +25,14 @@ export default new Router({
             },
             component: () => import ('../pages/email-link.vue')
         },
+        {
+            path: '/login',
+            name: 'login',
+            meta: {
+                layout: 'userpages'
+            },
+            component: () => import ('../pages/login.vue')
+        },
 
         // Dashboards
 

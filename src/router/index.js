@@ -4,11 +4,12 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     scrollBehavior() {
         return window.scrollTo({top: 0, behavior: 'smooth'});
     },
     routes: [
-        // our pages
+        // 제작 페이지
         {
             path: '/email-auth',
             name: 'emailAuth',
@@ -16,16 +17,14 @@ export default new Router({
                 layout: 'userpages'
             },
             component: () => import ('../pages/email-auth.vue')
-        },
-        {
+        }, {
             path: '/email-link',
             name: 'emailLink',
             meta: {
                 layout: 'userpages'
             },
             component: () => import ('../pages/email-link.vue')
-        },
-        {
+        }, {
             path: '/',
             name: 'login',
             meta: {
@@ -34,8 +33,8 @@ export default new Router({
             component: () => import ('../pages/login.vue')
         },
 
+        /* 해당 템플릿 오픈소스 페이지 */
         // Dashboards
-
         {
             path: '/analytics',
             name: 'analytics',
@@ -43,7 +42,6 @@ export default new Router({
         },
 
         // Pages
-
         {
             path: '/pages/login-boxed',
             name: 'login-boxed',
@@ -68,7 +66,6 @@ export default new Router({
         },
 
         // Elements
-
         {
             path: '/elements/buttons-standard',
             name: 'buttons-standard',
@@ -104,7 +101,6 @@ export default new Router({
         },
 
         // Components
-
         {
             path: '/components/tabs',
             name: 'tabs',
@@ -140,7 +136,6 @@ export default new Router({
         },
 
         // Tables
-
         {
             path: '/tables/regular-tables',
             name: 'regular-tables',
@@ -148,7 +143,6 @@ export default new Router({
         },
 
         // Dashboard Widgets
-
         {
             path: '/widgets/chart-boxes-3',
             name: 'chart-boxes-3',
@@ -156,7 +150,6 @@ export default new Router({
         },
 
         // Forms
-
         {
             path: '/forms/controls',
             name: 'controls',
@@ -166,8 +159,8 @@ export default new Router({
             name: 'layouts',
             component: () => import ('../DemoPages/Forms/Elements/Layouts.vue')
         },
-        // Charts
 
+        // Charts
         {
             path: '/charts/chartjs',
             name: 'chartjs',

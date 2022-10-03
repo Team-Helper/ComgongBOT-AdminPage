@@ -45,54 +45,100 @@
         },
         created() {
             const auth = getAuth();
-            if (isSignInWithEmailLink(auth, window.location.href)) { // 인증 메일의 링크 통해 접근한 경우
-                this.modalShow = false;
-                this.loading = true;
-                // console.log(window.location.href);
-                const currentURL = (new URL(window.location.href)).searchParams;
-                const email = currentURL.get('email');
-                const studentID = currentURL.get('studentID');
-                const userKey = currentURL.get('userKey');
-                // console.log(email, studentID, userKey);
-                signInWithEmailLink(auth, email, window.location.href)
-                    .then(() => {
-                        /* 이메일 링크 AUTH 후 컴공봇 기능인 사용자 프로필 생성 API에 사용자 입력 값을 전달하여 프로필 DB 생성 시도 */
-                        let data = JSON.stringify({
-                            "Data": {
-                                "email": email,
-                                "studentID": studentID,
-                                "userKey": userKey
-                            }
-                        });
-                        // console.log(data);
-                        let config = {
-                            method: 'post',
-                            url: process.env.VUE_APP_URL,
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            data: data
-                        };
-                        // console.log(config);
-
-                        axios(config)
-                            .then(() => {
-                                // console.log(JSON.stringify(response.data));
-                                this.loading = false;
-                                this.authSuccess = true;
-                            })
-                            .catch(() => {
-                                // console.error(err);
-                                this.loading = false;
-                                this.authFailed = true;
+            /* 개발/배포 모드를 구분해 로그 출력 */
+            if (process.env.NODE_ENV === 'development') {
+                if (isSignInWithEmailLink(auth, window.location.href)) {
+                    this.modalShow = false;
+                    this.loading = true;
+                    // console.log(window.location.href);
+                    const currentURL = (new URL(window.location.href)).searchParams;
+                    const email = currentURL.get('email');
+                    const studentID = currentURL.get('studentID');
+                    const userKey = currentURL.get('userKey');
+                    // console.log(email, studentID, userKey);
+                    signInWithEmailLink(auth, email, window.location.href)
+                        .then(() => {
+                            /* 이메일 인증 후 ComgongBOT 사용자 프로필 DB 생성 API에 사용자 입력 값을 전달하여 프로필 DB 생성 시도 */
+                            let data = JSON.stringify({
+                                "Data": {
+                                    "email": email,
+                                    "studentID": studentID,
+                                    "userKey": userKey
+                                }
                             });
+                            // console.log(data);
+                            let config = {
+                                method: 'post',
+                                url: process.env.VUE_APP_URL,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                data: data
+                            };
+                            // console.log(config);
 
-                    })
-                    .catch(() => {
-                        // console.error(err);
-                        this.loading = false;
-                        this.modalShow = true;
-                    });
+                            axios(config)
+                                .then((response) => {
+                                    console.log(JSON.stringify(response.data));
+                                    this.loading = false;
+                                    this.authSuccess = true;
+                                })
+                                .catch((err) => {
+                                    console.error(err);
+                                    this.loading = false;
+                                    this.authFailed = true;
+                                });
+
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            this.loading = false;
+                            this.modalShow = true;
+                        });
+                }
+            } else {
+                if (isSignInWithEmailLink(auth, window.location.href)) {
+                    this.modalShow = false;
+                    this.loading = true;
+                    const currentURL = (new URL(window.location.href)).searchParams;
+                    const email = currentURL.get('email');
+                    const studentID = currentURL.get('studentID');
+                    const userKey = currentURL.get('userKey');
+
+                    signInWithEmailLink(auth, email, window.location.href)
+                        .then(() => {
+                            let data = JSON.stringify({
+                                "Data": {
+                                    "email": email,
+                                    "studentID": studentID,
+                                    "userKey": userKey
+                                }
+                            });
+                            let config = {
+                                method: 'post',
+                                url: process.env.VUE_APP_URL,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                data: data
+                            };
+
+                            axios(config)
+                                .then(() => {
+                                    this.loading = false;
+                                    this.authSuccess = true;
+                                })
+                                .catch(() => {
+                                    this.loading = false;
+                                    this.authFailed = true;
+                                });
+
+                        })
+                        .catch(() => {
+                            this.loading = false;
+                            this.modalShow = true;
+                        });
+                }
             }
         },
         components: {

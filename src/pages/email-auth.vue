@@ -97,70 +97,113 @@
                         email: '',
                         studentID: ''
                     },
-                    key: false, // 정상 접근 관련 UI 출력 초기 Flag 값
-                    modalShow: true, // 비정상 접근 관련 UI 출력 초기 Flag 값
-                    sendSuccess: false, // 이메일 주소 인증 관련 링크 전송 성공 UI 출력 초기 Flag 값
-                    sendFailed: false, // 이메일 주소 인증 관련 링크 전송 실패 UI 출력 초기 Flag 값
-                    alreadyHave: false // 중복 가입 방지 관련 UI 출력 초기 Flag 값
+                    /* 사용자의 정상/비정상 접근 상태 UI 출력 Flag 값 */
+                    key: false,
+                    modalShow: true,
+                    /* 이메일 주소 인증 관련 링크 전송 성공/실패 상태 UI 출력 Flag 값 */
+                    sendSuccess: false,
+                    sendFailed: false,
+                    alreadyHave: false // 중복 가입 방지 관련 UI 출력 Flag 값
                 };
             },
             created() {
                 const urlParams = new URL(window.location.href).searchParams;
                 const userKey = urlParams.get('variable');
-                /* 주소의 파라미터를 통해 사용자 접근 상태를 확인하고 관련된 UI를 출력 */
+                /* 사용자가 카카오 채널 id값을 가진채 해당 페이지에 접근하였는지 주소의 파라미터 검증을 통해 확인 */
                 if (userKey) {
                     this.key = true;
                     this.modalShow = false;
                 }
+                // console.log(process.env.NODE_ENV);
             },
             methods: {
                 submit(event) {
                     event.preventDefault();
-                    // console.log(this.form);
                     const auth = getAuth();
                     const email = this.form.email + '@sungkyul.ac.kr';
-                    fetchSignInMethodsForEmail(auth, email)
-                        .then((result) => {
-                            // console.log(result);
-                            if (result.length === 0) {
-                                const studentID = this.form.studentID;
-                                const urlParams = new URL(window.location.href).searchParams;
-                                const userKey = urlParams.get('variable');
-                                /* 주소에 사용자 입력 값을 쿼리스트링으로 추가하여 사용자 프로필 생성 관련 값으로 쓰이기 위해 전달*/
-                                const linkURL = new URL(
-                                    'https://comgong-bot.web.app/#/email-link?email=?studentID=?userKey='
-                                );
-                                linkURL
-                                    .searchParams
-                                    .set('email', email);
-                                linkURL
-                                    .searchParams
-                                    .set('studentID', studentID);
-                                linkURL
-                                    .searchParams
-                                    .set('userKey', userKey);
-                                const webLink = linkURL.href;
-                                // console.log(webLink);
-                                sendSignInLinkToEmail(auth, email, {
-                                    url: webLink,
-                                    handleCodeInApp: true
-                                })
-                                    .then(() => {
-                                        // console.log('send email success!');
-                                        this.sendSuccess = true;
+                    /* 개발/배포 모드를 구분해 로그 출력 및 링크 페이지 주소 개별 지정 */
+                    if (process.env.NODE_ENV === 'development') {
+                        fetchSignInMethodsForEmail(auth, email)
+                            .then((result) => {
+                                // console.log(result);
+                                if (result.length === 0) {
+                                    const studentID = this.form.studentID;
+                                    const urlParams = new URL(window.location.href).searchParams;
+                                    const userKey = urlParams.get('variable');
+                                    /* 사용자 입력 값을 쿼리스트링으로 추가하여 사용자 프로필 생성 관련 값으로 쓰이기 위해 전달 */
+                                    const linkURL = new URL(
+                                        'http://localhost:8080/email-link?email=?studentID=?userKey='
+                                    );
+                                    linkURL
+                                        .searchParams
+                                        .set('email', email);
+                                    linkURL
+                                        .searchParams
+                                        .set('studentID', studentID);
+                                    linkURL
+                                        .searchParams
+                                        .set('userKey', userKey);
+                                    const webLink = linkURL.href;
+                                    // console.log(webLink);
+                                    sendSignInLinkToEmail(auth, email, {
+                                        url: webLink,
+                                        handleCodeInApp: true
                                     })
-                                    .catch(() => {
-                                        // console.error(err);
-                                        this.sendFailed = true;
-                                    });
-                            } else {
-                                this.alreadyHave = true;
-                            }
-                        })
-                        .catch(() => {
-                            // console.error(err);
-                            this.sendFailed = true;
-                        });
+                                        .then(() => {
+                                            console.log('send email success!');
+                                            this.sendSuccess = true;
+                                        })
+                                        .catch((err) => {
+                                            console.error(err);
+                                            this.sendFailed = true;
+                                        });
+                                } else {
+                                    this.alreadyHave = true;
+                                }
+                            })
+                            .catch((err) => {
+                                console.error(err);
+                                this.sendFailed = true;
+                            });
+                    } else {
+                        fetchSignInMethodsForEmail(auth, email)
+                            .then((result) => {
+                                if (result.length === 0) {
+                                    const studentID = this.form.studentID;
+                                    const urlParams = new URL(window.location.href).searchParams;
+                                    const userKey = urlParams.get('variable');
+                                    const linkURL = new URL(
+                                        'https://comgong-bot.web.app/#/email-link?email=?studentID=?userKey='
+                                    );
+                                    linkURL
+                                        .searchParams
+                                        .set('email', email);
+                                    linkURL
+                                        .searchParams
+                                        .set('studentID', studentID);
+                                    linkURL
+                                        .searchParams
+                                        .set('userKey', userKey);
+                                    const webLink = linkURL.href;
+                                    sendSignInLinkToEmail(auth, email, {
+                                        url: webLink,
+                                        handleCodeInApp: true
+                                    })
+                                        .then(() => {
+                                            this.sendSuccess = true;
+                                        })
+                                        .catch(() => {
+                                            this.sendFailed = true;
+                                        });
+                                } else {
+                                    this.alreadyHave = true;
+                                }
+                            })
+                            .catch(() => {
+                                this.sendFailed = true;
+                            });
+                    }
+
                 },
                 handleOk() {
                     this

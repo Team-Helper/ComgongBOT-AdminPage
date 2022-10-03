@@ -173,7 +173,7 @@
                                     const urlParams = new URL(window.location.href).searchParams;
                                     const userKey = urlParams.get('variable');
                                     const linkURL = new URL(
-                                        'https://comgong-bot.web.app/#/email-link?email=?studentID=?userKey='
+                                        'https://comgong-bot.web.app/email-link?email=?studentID=?userKey='
                                     );
                                     linkURL
                                         .searchParams

@@ -31,6 +31,10 @@ export default new Router({
                 layout: 'userpages'
             },
             component: () => import ('../pages/login.vue')
+        }, {
+            path: '/index',
+            name: 'index',
+            component: () => import ('../DemoPages/Dashboards/Analytics.vue')
         },
 
         /* 해당 템플릿 오픈소스 페이지 */

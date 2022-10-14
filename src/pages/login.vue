@@ -82,7 +82,9 @@
                         signInWithEmailAndPassword(auth, email, password)
                             .then((result) => {
                                 console.log(result);
-                                alert('login success!');
+                                this
+                                    .$router
+                                    .push('/index');
                             })
                             .catch((err) => {
                                 console.error(err);

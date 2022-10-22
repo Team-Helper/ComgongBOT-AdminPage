@@ -89,7 +89,7 @@
                                 this.loginFailed = true;
                             });
                     } else {
-                        signInWithEmailAndPassword(auth, email)
+                        signInWithEmailAndPassword(auth, email, password)
                             .then(() => {
                                 this
                                     .$router

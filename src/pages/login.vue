@@ -82,7 +82,19 @@
                         signInWithEmailAndPassword(auth, email, password)
                             .then((result) => {
                                 console.log(result);
-                                alert('login success!');
+                                auth
+                                    .currentUser
+                                    .getIdToken()
+                                    .then(function (idToken) {
+                                        // Send token to your backend via HTTPS ...
+                                        console.log(idToken);
+                                        alert('login success!');
+                                    })
+                                    .catch(function (error) {
+                                        // Handle error
+                                        console.error(error);
+                                        this.loginFailed = true;
+                                    });
                             })
                             .catch((err) => {
                                 console.error(err);
@@ -91,9 +103,18 @@
                     } else {
                         signInWithEmailAndPassword(auth, email, password)
                             .then(() => {
-                                this
-                                    .$router
-                                    .push('/index');
+                                auth
+                                    .currentUser
+                                    .getIdToken()
+                                    .then(function () {
+                                        this
+                                            .$router
+                                            .push('/index');
+                                    })
+                                    .catch(function () {
+                                        this.loginFailed = true;
+                                    });
+
                             })
                             .catch(() => {
                                 this.loginFailed = true;

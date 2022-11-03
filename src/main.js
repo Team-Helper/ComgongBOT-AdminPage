@@ -5,6 +5,7 @@ import BootstrapVue from "bootstrap-vue";
 
 import App from './App';
 
+import Main from '../src/pages/Wrappers2/baseLayout2.vue';
 import Default from './Layout/Wrappers/baseLayout.vue';
 import Pages from './Layout/Wrappers/pagesLayout.vue';
 
@@ -32,6 +33,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 
+Vue.component('main-layout', Main);
 Vue.component('default-layout', Default);
 Vue.component('userpages-layout', Pages);
 

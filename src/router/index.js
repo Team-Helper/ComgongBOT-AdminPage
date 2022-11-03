@@ -36,6 +36,15 @@ export default new Router({
             name: 'index',
             component: () => import ('../DemoPages/Dashboards/Analytics.vue')
         },
+        {
+            path: '/index2',
+            name: 'index2',
+            meta: {
+                layout: 'main'
+            },
+            component: () => import ('../pages/Analytics2.vue')
+        },
+        
 
         /* 해당 템플릿 오픈소스 페이지 */
         // Dashboards
